@@ -1,0 +1,55 @@
+spring:
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 500MB
+      max-request-size: 500MB
+
+  datasource:
+    driverClassName: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://127.0.0.1:3306/notice
+    username: root
+    password: 1234
+    hikari:
+      poolName: Hikari
+#      maximum-pool-size: 10
+#      max-lifetime: 1800000
+      data-source-properties:
+        cachePrepStmts: true
+        prepStmtCacheSize: 250
+        prepStmtCacheSqlLimit: 2048
+        useServerPrepStmts: true
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+      jdbc.lob.non_contextual_creation: true
+
+  cache:
+    jcache:
+      config: classpath:ehcache.xml
+
+server:
+  port: 80
+
+logging:
+  level:
+    jdbc:
+      audit: OFF
+      connection: OFF
+      sqltiming: OFF
+      resultset: OFF
+      sqlonly: INFO
+      resultsettable: INFO
+    org.springframework.web: INFO
+    com.zaxxer.hikari.HikariDataSource: DEBUG
+    net.sf.ehcache: debug
+
+env:
+  saveDir: C:/noticeTest
